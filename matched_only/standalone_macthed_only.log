@@ -1,0 +1,164 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Finished release [optimized] target(s) in 0.36s
+     Running `target/release/test_replace_recluster 10`
+[2023-12-15T09:08:00Z INFO  test_replace_recluster] =====running setup script====
+[2023-12-15T09:08:00Z INFO  test_replace_recluster] executing sql: drop table if exists test_order3
+start
+finished
+[2023-12-15T09:08:00Z INFO  test_replace_recluster] executing sql: drop table if exists random_source3
+start
+finished
+[2023-12-15T09:08:00Z INFO  test_replace_recluster] executing sql: drop table if exists random_source_store3
+start
+finished
+[2023-12-15T09:08:00Z INFO  test_replace_recluster] executing sql: create table test_order3 (
+                                id bigint,
+                                id1 bigint,
+                                id2 bigint,
+                                id3 bigint,
+                                id4 bigint,
+                                id5 bigint,
+                                id6 bigint,
+                                id7 bigint,
+    
+                                s1 varchar,
+                                s2 varchar,
+                                s3 varchar,
+                                s4 varchar,
+                                s5 varchar,
+                                s6 varchar,
+                                s7 varchar,
+                                s8 varchar,
+                                s9 varchar,
+                                s10 varchar,
+                                s11 varchar,
+                                s12 varchar,
+                                s13 varchar,
+    
+                                d1 DECIMAL(20, 8),
+                                d2 DECIMAL(20, 8),
+                                d3 DECIMAL(20, 8),
+                                d4 DECIMAL(20, 8),
+                                d5 DECIMAL(20, 8),
+                                d6 DECIMAL(30, 8),
+                                d7 DECIMAL(30, 8),
+                                d8 DECIMAL(30, 8),
+                                d9 DECIMAL(30, 8),
+                                d10 DECIMAL(30, 8),
+    
+                                insert_time datetime,
+                                insert_time1 datetime,
+                                insert_time2 datetime,
+                                insert_time3 datetime,
+    
+                                i int
+    
+    ) CLUSTER BY(to_yyyymmdd(insert_time), id) bloom_index_columns='insert_time,id'
+start
+finished
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] executing sql: create table random_source3(
+                                id bigint not null,
+                                id1 bigint,
+                                id2 bigint,
+                                id3 bigint,
+                                id4 bigint,
+                                id5 bigint,
+                                id6 bigint,
+                                id7 bigint,
+    
+                                s1 varchar,
+                                s2 varchar,
+                                s3 varchar,
+                                s4 varchar,
+                                s5 varchar,
+                                s6 varchar,
+                                s7 varchar,
+                                s8 varchar,
+                                s9 varchar,
+                                s10 varchar,
+                                s11 varchar,
+                                s12 varchar,
+                                s13 varchar,
+    
+                                d1 DECIMAL(20, 8),
+                                d2 DECIMAL(20, 8),
+                                d3 DECIMAL(20, 8),
+                                d4 DECIMAL(20, 8),
+                                d5 DECIMAL(20, 8),
+                                d6 DECIMAL(30, 8),
+                                d7 DECIMAL(30, 8),
+                                d8 DECIMAL(30, 8),
+                                d9 DECIMAL(30, 8),
+                                d10 DECIMAL(30, 8),
+    
+                                insert_time datetime not null,
+                                insert_time1 datetime,
+                                insert_time2 datetime,
+                                insert_time3 datetime,
+    
+                                i int
+    
+    ) Engine = Random
+start
+finished
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] executing sql: create table random_source_store3(
+                                id bigint not null,
+                                id1 bigint,
+                                id2 bigint,
+                                id3 bigint,
+                                id4 bigint,
+                                id5 bigint,
+                                id6 bigint,
+                                id7 bigint,
+    
+                                s1 varchar,
+                                s2 varchar,
+                                s3 varchar,
+                                s4 varchar,
+                                s5 varchar,
+                                s6 varchar,
+                                s7 varchar,
+                                s8 varchar,
+                                s9 varchar,
+                                s10 varchar,
+                                s11 varchar,
+                                s12 varchar,
+                                s13 varchar,
+    
+                                d1 DECIMAL(20, 8),
+                                d2 DECIMAL(20, 8),
+                                d3 DECIMAL(20, 8),
+                                d4 DECIMAL(20, 8),
+                                d5 DECIMAL(20, 8),
+                                d6 DECIMAL(30, 8),
+                                d7 DECIMAL(30, 8),
+                                d8 DECIMAL(30, 8),
+                                d9 DECIMAL(30, 8),
+                                d10 DECIMAL(30, 8),
+    
+                                insert_time datetime not null,
+                                insert_time1 datetime,
+                                insert_time2 datetime,
+                                insert_time3 datetime,
+    
+                                i int
+    
+    )
+start
+finished
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] executing sql: truncate table system.metrics
+start
+finished
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] ====setup done====
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] =====running test script ====
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] executing batch: 0
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] executing table maintenance batch : 0
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] executing merge-into batch : 0
+[2023-12-15T09:08:01Z INFO  test_replace_recluster] Err. maintenance batch : 0. APIError: ResponseError with 1025: Unknown table 'test_order'
+thread 'tokio-runtime-worker' panicked at src/main.rs:168:13:
+Api(InvalidResponse(QueryError { code: 1025, message: "Unknown table 'random_source_store'" }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Error: task 36 panicked

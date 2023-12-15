@@ -1,0 +1,6 @@
+    Finished release [optimized] target(s) in 0.09s
+     Running `target/release/test_replace_recluster 1000`
+[2023-11-27T10:26:48Z INFO  test_replace_recluster] =====running setup script====
+[2023-11-27T10:26:48Z INFO  test_replace_recluster] executing sql: drop table if exists test_order
+start
+Error: APIError: ResponseError with 502: 
