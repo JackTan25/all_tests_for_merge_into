@@ -139,7 +139,7 @@ async fn exec_replace_conflict(dsn: &str, batch_ids: &[u32], iterations: u32) ->
         "merge into test_order3 as t 
                          using ({sub_query}) as s 
                          on t.id = s.id and t.insert_time = s.insert_time
-                         when matched then update set id2 = ({iterations} + s.id2) * 8 * 7,id1 = ({iterations} + s.id2) * 8
+                         when matched then update set id2 = s.id2,id1 = s.id1
                          "
     );
 
