@@ -305,7 +305,7 @@ async fn verify(dsn: &str, success_replace_stmts: u32, iterations: u32) -> Resul
         // not required to be equal, since there might be communication failures
         let mut rows = conn
             .query_iter(&format!(
-                "select count(distinct(id2)) from test_order3 where id2 = {iterations} * 8 * 7",
+                "select count(distinct(id2)) from test_order3 where id2 >= {iterations} * 8 * 7",
             ))
             .await?;
         let r = rows.next().await.unwrap().unwrap();
